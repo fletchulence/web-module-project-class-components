@@ -15,15 +15,24 @@ export default class TodoForm extends Component{
       })
    }
 
+   handleSubmit = (evt) => {
+      evt.preventDefault()
+      this.props.addItem(this.state.todoText);
+      this.setState({
+         todoText: '',
+      })
+   }
+
    render(){
       return(
-         <form>
+         <form onSubmit={this.handleSubmit}>
             <label htmlFor='todo-input' > Add something ToDo: </label>
             <input 
                id='todo-input' 
                name='todoText'
                value={this.state.todoText}
                onChange={this.handleChange} />
+            <button > Add Todo </button>
          </form>
       )
    }
