@@ -5,10 +5,10 @@ function Todo (props){
    return (
       <div>
          {/* this is what we want to populate in our form */}
-         <p onClick={() => /* console.log(todo.id) */
-            toggleCompleted(todo.id)
-            }>  
-            {todo.task}
+         <p 
+            style= {{ textDecoration: props.todo.completed ? 'line-through': null}} 
+            onClick={() => toggleCompleted(todo.id)}>  
+               {todo.task}
          </p>
       </div>
    )
