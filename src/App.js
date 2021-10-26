@@ -52,6 +52,15 @@ class App extends React.Component {
     })
   }
 
+  //! WE WANT TO HAVE SOMETHING THAT FINDS THE THING WE WANT TO MATCH, AND RETURNS IT BACK,
+  //! IN THIS CASE WE ARE LOOKING FOR A TRUE OR FALSE SO FILTER IS PERFECT
+  clearCompleted = (evt) =>{
+    evt.preventDefault()
+    this.setState({
+      todos: this.state.todos.filter( todo => !todo.completed)
+    })
+  }
+
   render() {
     return (
       <div>
@@ -62,6 +71,7 @@ class App extends React.Component {
           toggleCompleted={this.toggleCompleted} />
         {/* passing in the added item  */}
         <TodoForm addItem={this.addItem} />
+        <button onClick={this.clearCompleted}> Clear Completed </button>
       </div>
     );
   }
