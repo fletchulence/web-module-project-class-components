@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 
@@ -16,7 +16,7 @@ const todoitems = [
 ];
 
 //class declaration
-class App extends Component {
+class App extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -28,27 +28,27 @@ class App extends Component {
   addItem = (taskName) => {
     const newTodo = {
       task: taskName,
-      id: Date.now(),
+      id: new Date(),
       completed: false
     };
     //? what does this do again?
     this.setState({
-      todos: [...this.state.todos, newTodo]
+      todos: [...this.state.todos, newTodo],
     })
   }
 
+  //here is toggling on and off
   toggleCompleted = (id) => {
     this.setState({
-      todos: [this.state.todos.map(todo => {
+      todos: this.state.todos.map((todo) => {
         if (todo.id === id){
           return {
-            ... todo, 
-            completed: !todo.completed,
+            ...todo, completed: !todo.completed,
           }
         } else {
           return todo;
         }
-      })]
+      })
     })
   }
 
@@ -59,7 +59,7 @@ class App extends Component {
         {/* injecting props called todos */}
         <TodoList 
           todos={this.state.todos} 
-          tooggleCompleted={this.toggleCompleted} />
+          toggleCompleted={this.toggleCompleted} />
         {/* passing in the added item  */}
         <TodoForm addItem={this.addItem} />
       </div>

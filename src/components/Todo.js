@@ -1,11 +1,14 @@
 import React from "react";
 
 function Todo (props){
-   return(
+   const { toggleCompleted, todo } = props;
+   return (
       <div>
          {/* this is what we want to populate in our form */}
-         <p onClick={() => props.toggleCompleted(props.todo.id)}>  
-            {props.todo.task}
+         <p onClick={() => /* console.log(todo.id) */
+            toggleCompleted(todo.id)
+            }>  
+            {todo.task}
          </p>
       </div>
    )
