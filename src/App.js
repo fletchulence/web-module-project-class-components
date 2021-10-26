@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 
@@ -15,7 +15,8 @@ const todoitems = [
   }
 ];
 
-class App extends React.Component {
+//class declaration
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -23,16 +24,14 @@ class App extends React.Component {
     }
   }
 
-  //   handleClick = (evt) =>{
-  //     console.log(evt.target.todo)
-  //   }
-
+  //to add the item to the form
   addItem = (taskName) =>{
     const newTodo = {
       task: taskName,
       id: Date.now(),
       completed: false
     };
+    //? what does this do again?
     this.setState({
       todos: [...this.state.todos, newTodo]
     })
@@ -42,9 +41,10 @@ class App extends React.Component {
     return (
       <div>
         <h2> Welcome to your Todo App!</h2>
+        {/* injecting props called todos */}
         <TodoList todos={this.state.todos} />
+        
         <TodoForm addItem={this.addItem} />
-        {/* <button onClick= {this.handleClick}> click this </button> */}
       </div>
     );
   }
