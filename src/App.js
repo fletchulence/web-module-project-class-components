@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   //to add the item to the form
-  addItem = (taskName) =>{
+  addItem = (taskName) => {
     const newTodo = {
       task: taskName,
       id: Date.now(),
@@ -37,13 +37,30 @@ class App extends Component {
     })
   }
 
+  toggleCompleted = (id) => {
+    this.setState({
+      todos: [this.state.todos.map(todo => {
+        if (todo.id === id){
+          return {
+            ... todo, 
+            completed: !todo.completed,
+          }
+        } else {
+          return todo;
+        }
+      })]
+    })
+  }
+
   render() {
     return (
       <div>
         <h2> Welcome to your Todo App!</h2>
         {/* injecting props called todos */}
-        <TodoList todos={this.state.todos} />
-        
+        <TodoList 
+          todos={this.state.todos} 
+          tooggleCompleted={this.toggleCompleted} />
+        {/* passing in the added item  */}
         <TodoForm addItem={this.addItem} />
       </div>
     );

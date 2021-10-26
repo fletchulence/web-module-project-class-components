@@ -9,7 +9,10 @@ export default function TodoList (props){
          {todos.map(todo => {
             return(
                /* the todos are mapped to populate items in list */
-               <Todo key={todo.id} todo={todo} />
+               <Todo 
+                  key={todo.id} 
+                  todo={todo}
+                  toggleCompleted={props.toggleCompleted} />
             )
          })}
       </div>
